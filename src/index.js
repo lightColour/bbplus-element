@@ -25,7 +25,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 };
 
 module.exports = {
-  version: '2.0.9',
+  version: '2.0.0',
   install,
   SelectDatePicker,
   TablePagination
