@@ -1,0 +1,4 @@
+{
+  "select-date-picker": "./packages/select-date-picker/index.js",
+  "table-pagination": "./packages/table-pagination/index.js"
+}

@@ -1,0 +1,16 @@
+{
+  "presets": [["es2015", { "loose": true }]],
+  "plugins": ["transform-vue-jsx"],
+  "env": {
+    "utils": {
+      "plugins": [
+        ["module-resolver", {
+          "root": ["bbplus-element"],
+          "alias": {
+            "bbplus-element/src": "bbplus-element/lib"
+          }
+        }]
+      ]
+    }
+  }
+}
