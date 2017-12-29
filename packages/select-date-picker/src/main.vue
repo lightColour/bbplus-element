@@ -44,7 +44,7 @@ export default {
     },
     width: {
       type: String,
-      default: '252px'
+      default: '254px'
     },
     size: {
       type: String
@@ -84,7 +84,6 @@ export default {
   },
   methods: {
     datechange(date) {
-      // test();
       if (date !== '' && JSON.stringify(date) !== JSON.stringify(this.olddate)) {
         this.select = date.join(this.separator);
         this.olddate = date;

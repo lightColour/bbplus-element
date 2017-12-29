@@ -29,9 +29,9 @@ npm run dist
 ### 组件开发规范
 | 目录 | 说明 |
 |---------- |-------- |
-| bb-packages | 团队组件存放目录 |
-| bb-packages/bb-theme-chalk/src | 团队组件样式目录 |
-| src/bb-utils | 团队工具函数存放目录 |
+| packages | 团队组件存放目录 |
+| packages/theme-chalk/src | 团队组件样式目录 |
+| src/utils | 团队工具函数存放目录 |
 | examples/docs/zh-CN | 组件文档、实例目录 |
 
 ### 组件开发流程
@@ -42,5 +42,5 @@ npm run dist
 #### 4. src/index.js中引用组件
 #### 5. 在examples/nav.config.json中添加路由
 #### 6. 运行 npm run dist --打包项目代码
-#### 7. 运行 npm run deploy --生成项目文档
+#### 7. 运行 npm run deploy --生成项目文档(注：这里运行结束后会报错 "系统找不到指定的路径"， 是正常的)
 #### 8. 合并项目到master分支，推送到git上

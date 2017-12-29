@@ -38,15 +38,19 @@
       ]
     },
     {
-      "name": "组件开发指南",
+      "name": "bbplus开发指南",
       "children": [
         {
           "path": "/develop",
           "name": "组件开发指南"
         },
         {
-          "path": "/different",
-          "name": "修改的配置"
+          "path": "/guidance",
+          "name": "使用指南"
+        },
+        {
+          "path": "/guide-practice",
+          "name": "踩坑指南"
         }
       ]
     },
