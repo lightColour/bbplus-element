@@ -1,4 +1,5 @@
 {
   "select-date-picker": "./packages/select-date-picker/index.js",
-  "table-pagination": "./packages/table-pagination/index.js"
+  "table-pagination": "./packages/table-pagination/index.js",
+  "select-picker": "./packages/select-picker/index.js"
 }

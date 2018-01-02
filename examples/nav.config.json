@@ -67,6 +67,10 @@
             {
               "path": "/table-pagination",
               "title": "TablePagination 表格及分页组件"
+            },
+            {
+              "path": "/select-picker",
+              "title": "SelectPicker 下拉多选"
             }
           ]
         }

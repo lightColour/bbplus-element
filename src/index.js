@@ -2,10 +2,12 @@
 
 import SelectDatePicker from '../packages/select-date-picker/index.js';
 import TablePagination from '../packages/table-pagination/index.js';
+import SelectPicker from '../packages/select-picker/index.js';
 
 const components = [
   SelectDatePicker,
-  TablePagination
+  TablePagination,
+  SelectPicker
 ];
 
 const install = function(Vue, opts = {}) {
@@ -28,7 +30,8 @@ module.exports = {
   version: '2.0.0',
   install,
   SelectDatePicker,
-  TablePagination
+  TablePagination,
+  SelectPicker
 };
 
 module.exports.default = module.exports;
