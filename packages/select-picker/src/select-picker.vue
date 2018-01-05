@@ -8,7 +8,7 @@
       v-if="multiple"
       @click.stop="toggleMenu"
       ref="tags"
-      :style="{ 'max-width': inputWidth - 32 + 'px' }">
+      :style="{ 'max-width': inputWidth + 'px' }">
       <span v-if="collapseTags && selected.length">
         <el-tag
           :closable="!disabled"
@@ -104,16 +104,46 @@
           wrap-class="el-select-dropdown__wrap"
           view-class="el-select-dropdown__list"
           ref="scrollbar"
-          :class="{ 'is-empty': !allowCreate && query && filteredOptionsCount === 0 }"
+          :class="{ 'is-empty': !allowCreate && query && filteredOptionsCount === 0, 'el-scrollbar-wrap__wrap': true }"
+          :style="{ width: inputWidth + 'px' }"
           v-show="options.length > 0 && !loading">
-          <el-option
+          <bb-option
             :value="query"
             created
             v-if="showNewOption">
-          </el-option>
+          </bb-option>
           <slot></slot>
         </el-scrollbar>
+        <el-scrollbar
+          tag="ul"
+          wrap-class="el-select-dropdown__wrap"
+          view-class="el-select-dropdown__selects"
+          ref="scrollbar"
+          :class="{ 'is-empty': !allowCreate && query && filteredOptionsCount === 0, 'el-scrollbar-wrap__side': true }"
+          :style="{ width: (colWidth + 23) + 'px' }"
+          v-show="options.length > 0 && !loading">
+          <li
+            v-for="item in selected"
+            :key="getValueKey(item)"
+            :title="item.currentLabel">
+            <el-tag
+              size="small"
+              type="info"
+              :closable="!disabled"
+              @close="deleteTag($event, item)"
+              disable-transitions>{{ item.currentLabel }}
+            </el-tag>
+          </li>
+        </el-scrollbar>
         <p class="el-select-dropdown__empty" v-if="emptyText && (allowCreate && options.length === 0 || !allowCreate)">{{ emptyText }}</p>
+        <div class="el-select-dropdown__footer">
+          <el-button
+            size="mini"
+            @click="handleEmpty">清空</el-button>
+          <el-button
+            size="mini"
+            @click="handleSelectAll">全选</el-button>
+        </div>
       </el-select-menu>
     </transition>
   </div>
@@ -123,11 +153,8 @@
   import Emitter from 'bbplus-element/src/mixins/emitter';
   import Focus from 'bbplus-element/src/mixins/focus';
   import Locale from 'bbplus-element/src/mixins/locale';
-  // import ElInput from 'bbplus-element/packages/input';
   import ElSelectMenu from './select-dropdown.vue';
-  import ElOption from './option.vue';
-  // import ElTag from 'bbplus-element/packages/tag';
-  // import ElScrollbar from 'bbplus-element/packages/scrollbar';
+  import BbOption from './bb-option.vue';
   import debounce from 'throttle-debounce/debounce';
   import Clickoutside from 'bbplus-element/src/utils/clickoutside';
   import { addClass, removeClass, hasClass } from 'bbplus-element/src/utils/dom';
@@ -147,9 +174,9 @@
   export default {
     mixins: [Emitter, Locale, Focus('reference'), NavigationMixin],
 
-    name: 'ElSelect',
+    name: 'BbSelectPicker',
 
-    componentName: 'ElSelect',
+    componentName: 'BbSelectPicker',
 
     inject: {
       elFormItem: {
@@ -159,7 +186,7 @@
 
     provide() {
       return {
-        'select': this
+        'bb-select-picker': this
       };
     },
 
@@ -209,7 +236,7 @@
 
     components: {
       ElSelectMenu,
-      ElOption
+      BbOption
     },
 
     directives: { Clickoutside },
@@ -218,6 +245,7 @@
       name: String,
       id: String,
       value: {
+        type: Array,
         required: true
       },
       size: String,
@@ -233,7 +261,10 @@
       noDataText: String,
       remoteMethod: Function,
       filterMethod: Function,
-      multiple: Boolean,
+      multiple: {
+        type: Boolean,
+        default: true
+      },
       multipleLimit: {
         type: Number,
         default: 0
@@ -250,7 +281,18 @@
         type: String,
         default: 'value'
       },
-      collapseTags: Boolean
+      collapseTags: {
+        type: Boolean,
+        default: true
+      },
+      cols: {
+        type: Number,
+        default: 4
+      },
+      colWidth: {
+        type: Number,
+        default: 90
+      }
     },
 
     data() {
@@ -345,8 +387,8 @@
               this.$refs.input.focus();
             } else {
               if (!this.remote) {
-                this.broadcast('ElOption', 'queryChange', '');
-                this.broadcast('ElOptionGroup', 'queryChange');
+                this.broadcast('BbOption', 'queryChange', '');
+                this.broadcast('BbOptionGroup', 'queryChange');
               }
               this.broadcast('ElInput', 'inputSelect');
             }
@@ -389,11 +431,11 @@
           this.remoteMethod(val);
         } else if (typeof this.filterMethod === 'function') {
           this.filterMethod(val);
-          this.broadcast('ElOptionGroup', 'queryChange');
+          this.broadcast('BbOptionGroup', 'queryChange');
         } else {
           this.filteredOptionsCount = this.optionsCount;
-          this.broadcast('ElOption', 'queryChange', val);
-          this.broadcast('ElOptionGroup', 'queryChange');
+          this.broadcast('BbOption', 'queryChange', val);
+          this.broadcast('BbOptionGroup', 'queryChange');
         }
         if (this.defaultFirstOption && (this.filterable || this.remote) && this.filteredOptionsCount) {
           this.checkDefaultFirstOption();
@@ -678,7 +720,7 @@
       },
 
       resetInputWidth() {
-        this.inputWidth = this.$refs.reference.$el.getBoundingClientRect().width;
+        // this.inputWidth = this.$refs.reference.$el.getBoundingClientRect().width;
       },
 
       handleResize() {
@@ -722,6 +764,20 @@
         } else {
           return getValueByPath(item.value, this.valueKey);
         }
+      },
+
+      handleSelectAll() {
+        const value = this.options.map(val => this.getValueKey(val));
+        this.$emit('input', value);
+        this.emitChange(value);
+        this.$emit('selectAll', value);
+      },
+
+      handleEmpty() {
+        const value = [];
+        this.$emit('input', value);
+        this.emitChange(value);
+        this.$emit('clear');
       }
     },
 
@@ -752,7 +808,7 @@
       }
       this.$nextTick(() => {
         if (this.$refs.reference && this.$refs.reference.$el) {
-          this.inputWidth = this.$refs.reference.$el.getBoundingClientRect().width;
+          this.inputWidth = this.cols * this.colWidth + 10;
         }
       });
       this.setSelected();

@@ -2,20 +2,26 @@
   <div
     class="el-select-dropdown el-popper"
     :class="[{ 'is-multiple': $parent.multiple }, popperClass]"
-    :style="{ minWidth: minWidth }">
+    :style="{ width: minWidth }">
+    <div
+      class="el-select-dropdown__search"
+      :style="{ 'padding-right': $parent.colWidth + 37 + 'px' }">
+      <el-input class="el-select-dropdown__input" v-model="query" size="small" placeholder="请输入内容"></el-input>
+    </div>
     <slot></slot>
   </div>
 </template>
 
 <script type="text/babel">
   import Popper from 'bbplus-element/src/utils/vue-popper';
+  import Emitter from 'bbplus-element/src/mixins/emitter';
 
   export default {
     name: 'ElSelectDropdown',
 
     componentName: 'ElSelectDropdown',
 
-    mixins: [Popper],
+    mixins: [Popper, Emitter],
 
     props: {
       placement: {
@@ -41,7 +47,9 @@
 
     data() {
       return {
-        minWidth: ''
+        minWidth: '',
+        query: '',
+        previousQuery: ''
       };
     },
 
@@ -53,7 +61,12 @@
 
     watch: {
       '$parent.inputWidth'() {
-        this.minWidth = this.$parent.$el.getBoundingClientRect().width + 'px';
+        this.minWidth = this.$parent.colWidth * (this.$parent.cols + 1) + 44 + 'px';
+        // this.minWidth = this.$parent.$el.getBoundingClientRect().width + 'px';
+      },
+
+      query(val) {
+        this.$parent.handleQueryChange(val);
       }
     },
 

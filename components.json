@@ -1,5 +1,8 @@
 {
   "select-date-picker": "./packages/select-date-picker/index.js",
   "table-pagination": "./packages/table-pagination/index.js",
-  "select-picker": "./packages/select-picker/index.js"
+  "select-picker": "./packages/select-picker/index.js",
+  "bb-option": "./packages/bb-option/index.js",
+  "bb-option-group": "./packages/bb-option-group/index.js",
+  "pdf-export": "./packages/pdf-export/index.js"
 }

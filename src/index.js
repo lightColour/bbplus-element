@@ -3,11 +3,17 @@
 import SelectDatePicker from '../packages/select-date-picker/index.js';
 import TablePagination from '../packages/table-pagination/index.js';
 import SelectPicker from '../packages/select-picker/index.js';
+import BbOption from '../packages/bb-option/index.js';
+import BbOptionGroup from '../packages/bb-option-group/index.js';
+import PdfExport from '../packages/pdf-export/index.js';
 
 const components = [
   SelectDatePicker,
   TablePagination,
-  SelectPicker
+  SelectPicker,
+  BbOption,
+  BbOptionGroup,
+  PdfExport
 ];
 
 const install = function(Vue, opts = {}) {
@@ -31,7 +37,10 @@ module.exports = {
   install,
   SelectDatePicker,
   TablePagination,
-  SelectPicker
+  SelectPicker,
+  BbOption,
+  BbOptionGroup,
+  PdfExport
 };
 
 module.exports.default = module.exports;

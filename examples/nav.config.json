@@ -71,6 +71,10 @@
             {
               "path": "/select-picker",
               "title": "SelectPicker 下拉多选"
+            },
+            {
+              "path": "/pdf-export",
+              "title": "PdfExport 导出为PDF"
             }
           ]
         }

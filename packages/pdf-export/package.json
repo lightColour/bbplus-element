@@ -1,0 +1,15 @@
+{
+  "name": "element-pdf-export",
+  "version": "0.0.0",
+  "description": "A pdf-export component for Vue.js.",
+  "keywords": [
+    "element",
+    "vue",
+    "component"
+  ],
+  "main": "./lib/index.js",
+  "repository": "https://github.com/ElemeFE/element/tree/master/packages/pdf-export",
+  "author": "zhaozhaoliu",
+  "license": "MIT",
+  "dependencies": {}
+}

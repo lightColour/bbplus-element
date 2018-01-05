@@ -3,6 +3,7 @@
     @mouseenter="hoverItem"
     @click.stop="selectOptionClick"
     class="el-select-dropdown__item"
+    :style="{ width: width - 4 + 'px' }"
     v-show="visible"
     :class="{
       'selected': itemSelected,
@@ -22,11 +23,11 @@
   export default {
     mixins: [Emitter],
 
-    name: 'ElOption',
+    name: 'BbOption',
 
-    componentName: 'ElOption',
+    componentName: 'BbOption',
 
-    inject: ['select'],
+    inject: ['bb-select-picker'],
 
     props: {
       value: {
@@ -46,7 +47,8 @@
         groupDisabled: false,
         visible: true,
         hitState: false,
-        hover: false
+        hover: false,
+        width: this['bb-select-picker'].colWidth
       };
     },
 
@@ -64,18 +66,18 @@
       },
 
       itemSelected() {
-        if (!this.select.multiple) {
-          return this.isEqual(this.value, this.select.value);
+        if (!this['bb-select-picker'].multiple) {
+          return this.isEqual(this.value, this['bb-select-picker'].value);
         } else {
-          return this.contains(this.select.value, this.value);
+          return this.contains(this['bb-select-picker'].value, this.value);
         }
       },
 
       limitReached() {
-        if (this.select.multiple) {
+        if (this['bb-select-picker'].multiple) {
           return !this.itemSelected &&
-            (this.select.value || []).length >= this.select.multipleLimit &&
-            this.select.multipleLimit > 0;
+            (this['bb-select-picker'].value || []).length >= this['bb-select-picker'].multipleLimit &&
+            this['bb-select-picker'].multipleLimit > 0;
         } else {
           return false;
         }
@@ -84,10 +86,10 @@
 
     watch: {
       currentLabel() {
-        if (!this.created && !this.select.remote) this.dispatch('ElSelect', 'setSelected');
+        if (!this.created && !this['bb-select-picker'].remote) this.dispatch('BbSelectPicker', 'setSelected');
       },
       value() {
-        if (!this.created && !this.select.remote) this.dispatch('ElSelect', 'setSelected');
+        if (!this.created && !this['bb-select-picker'].remote) this.dispatch('BbSelectPicker', 'setSelected');
       }
     },
 
@@ -96,7 +98,7 @@
         if (!this.isObject) {
           return a === b;
         } else {
-          const valueKey = this.select.valueKey;
+          const valueKey = this['bb-select-picker'].valueKey;
           return getValueByPath(a, valueKey) === getValueByPath(b, valueKey);
         }
       },
@@ -105,7 +107,7 @@
         if (!this.isObject) {
           return arr.indexOf(target) > -1;
         } else {
-          const valueKey = this.select.valueKey;
+          const valueKey = this['bb-select-picker'].valueKey;
           return arr.some(item => {
             return getValueByPath(item, valueKey) === getValueByPath(target, valueKey);
           });
@@ -118,13 +120,13 @@
 
       hoverItem() {
         if (!this.disabled && !this.groupDisabled) {
-          this.select.hoverIndex = this.select.options.indexOf(this);
+          this['bb-select-picker'].hoverIndex = this['bb-select-picker'].options.indexOf(this);
         }
       },
 
       selectOptionClick() {
         if (this.disabled !== true && this.groupDisabled !== true) {
-          this.dispatch('ElSelect', 'handleOptionClick', this);
+          this.dispatch('BbSelectPicker', 'handleOptionClick', this);
         }
       },
 
@@ -133,23 +135,23 @@
         let parsedQuery = String(query).replace(/(\^|\(|\)|\[|\]|\$|\*|\+|\.|\?|\\|\{|\}|\|)/g, '\\$1');
         this.visible = new RegExp(parsedQuery, 'i').test(this.currentLabel) || this.created;
         if (!this.visible) {
-          this.select.filteredOptionsCount--;
+          this['bb-select-picker'].filteredOptionsCount--;
         }
       }
     },
 
     created() {
-      this.select.options.push(this);
-      this.select.cachedOptions.push(this);
-      this.select.optionsCount++;
-      this.select.filteredOptionsCount++;
+      this['bb-select-picker'].options.push(this);
+      this['bb-select-picker'].cachedOptions.push(this);
+      this['bb-select-picker'].optionsCount++;
+      this['bb-select-picker'].filteredOptionsCount++;
 
       this.$on('queryChange', this.queryChange);
       this.$on('handleGroupDisabled', this.handleGroupDisabled);
     },
 
     beforeDestroy() {
-      this.select.onOptionDestroy(this.select.options.indexOf(this));
+      this['bb-select-picker'].onOptionDestroy(this['bb-select-picker'].options.indexOf(this));
     }
   };
 </script>

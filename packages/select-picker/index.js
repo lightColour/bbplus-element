@@ -1,8 +1,8 @@
-import Select from './src/select';
+import SelectPicker from './src/select-picker';
 
 /* istanbul ignore next */
-Select.install = function(Vue) {
-  Vue.component(Select.name, Select);
+SelectPicker.install = function(Vue) {
+  Vue.component(SelectPicker.name, SelectPicker);
 };
 
-export default Select;
+export default SelectPicker;
