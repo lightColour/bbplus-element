@@ -150,19 +150,19 @@
 </template>
 
 <script type="text/babel">
-  import Emitter from 'bbplus-element/src/mixins/emitter';
-  import Focus from 'bbplus-element/src/mixins/focus';
-  import Locale from 'bbplus-element/src/mixins/locale';
+  import Emitter from 'element-ui/lib/mixins/emitter';
+  import Focus from 'element-ui/lib/mixins/focus';
+  import Locale from 'element-ui/lib/mixins/locale';
   import ElSelectMenu from './select-dropdown.vue';
   import BbOption from './bb-option.vue';
   import debounce from 'throttle-debounce/debounce';
-  import Clickoutside from 'bbplus-element/src/utils/clickoutside';
-  import { addClass, removeClass, hasClass } from 'bbplus-element/src/utils/dom';
-  import { addResizeListener, removeResizeListener } from 'bbplus-element/src/utils/resize-event';
-  import { t } from 'bbplus-element/src/locale';
-  import scrollIntoView from 'bbplus-element/src/utils/scroll-into-view';
-  import { getValueByPath } from 'bbplus-element/src/utils/util';
-  import { valueEquals } from 'bbplus-element/src/utils/util';
+  import Clickoutside from 'element-ui/lib/utils/clickoutside';
+  import { addClass, removeClass, hasClass } from 'element-ui/lib/utils/dom';
+  import { addResizeListener, removeResizeListener } from 'element-ui/lib/utils/resize-event';
+  import { t } from 'element-ui/lib/locale';
+  import scrollIntoView from 'element-ui/lib/utils/scroll-into-view';
+  import { getValueByPath } from 'element-ui/lib/utils/util';
+  import { valueEquals } from 'element-ui/lib/utils/util';
   import NavigationMixin from './navigation-mixin';
 
   const sizeMap = {

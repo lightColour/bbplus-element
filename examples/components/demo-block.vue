@@ -201,10 +201,12 @@
       goJsfiddle() {
         const { script, html, style } = this.jsfiddle;
         const resourcesTpl = '<scr' + 'ipt src="//unpkg.com/vue/dist/vue.js"></scr' + 'ipt>' +
+        '\n<scr' + 'ipt src="//unpkg.com/element-ui@2.0.10/lib/index.js"></scr' + 'ipt>' +
         '\n<scr' + `ipt src="//unpkg.com/bbplus-element@${ version }/lib/index.js"></scr` + 'ipt>';
+        console.log(resourcesTpl);
         let jsTpl = (script || '').replace(/export default/, 'var Main =').trim();
         let htmlTpl = `${resourcesTpl}\n<div id="app">\n${html.trim()}\n</div>`;
-        let cssTpl = `@import url("//unpkg.com/bbplus-element@${ version }/lib/theme-chalk/index.css");\n${(style || '').trim()}\n`;
+        let cssTpl = `@import url("//unpkg.com/element-ui@2.0.10/lib/theme-chalk/index.css");\n@import url("//unpkg.com/bbplus-element@${ version }/lib/theme-chalk/index.css");\n${(style || '').trim()}\n`;
         jsTpl = jsTpl
           ? jsTpl + '\nvar Ctor = Vue.extend(Main)\nnew Ctor().$mount(\'#app\')'
           : 'new Vue().$mount(\'#app\')';

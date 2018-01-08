@@ -11,5 +11,7 @@
   "repository": "https://github.com/ElemeFE/element/tree/master/packages/pdf-export",
   "author": "zhaozhaoliu",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "jspdf": "^1.3.5"
+  }
 }

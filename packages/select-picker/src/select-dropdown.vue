@@ -13,8 +13,8 @@
 </template>
 
 <script type="text/babel">
-  import Popper from 'bbplus-element/src/utils/vue-popper';
-  import Emitter from 'bbplus-element/src/mixins/emitter';
+  import Popper from 'element-ui/lib/utils/vue-popper';
+  import Emitter from 'element-ui/lib/mixins/emitter';
 
   export default {
     name: 'ElSelectDropdown',

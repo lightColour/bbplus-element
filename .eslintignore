@@ -4,4 +4,4 @@ src/utils/date.js
 node_modules
 lib
 coverage
-packages/pdf-export/src
+packages/pdf-export/src/html2canvas.js

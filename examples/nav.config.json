@@ -5,24 +5,29 @@
       "path": "/changelog"
     },
     {
-      "name": "Element React",
-      "href": "https://eleme.github.io/element-react/"
+      "name": "饿了么Element",
+      "href": "http://element-cn.eleme.io/#/zh-CN/component/installation"
     },
     {
-      "name": "Element Angular",
-      "href": "https://element-angular.faas.ele.me/"
+      "name": "bbplus开发指南",
+      "children": [
+        {
+          "path": "/guidance",
+          "name": "使用指南"
+        },
+        {
+          "path": "/develop",
+          "name": "组件开发指南"
+        },
+        {
+          "path": "/guide-practice",
+          "name": "踩坑指南"
+        }
+      ]
     },
     {
       "name": "开发指南",
       "children": [
-        {
-          "path": "/installation",
-          "name": "安装"
-        },
-        {
-          "path": "/quickstart",
-          "name": "快速上手"
-        },
         {
           "path": "/i18n",
           "name": "国际化"
@@ -38,27 +43,10 @@
       ]
     },
     {
-      "name": "bbplus开发指南",
-      "children": [
-        {
-          "path": "/develop",
-          "name": "组件开发指南"
-        },
-        {
-          "path": "/guidance",
-          "name": "使用指南"
-        },
-        {
-          "path": "/guide-practice",
-          "name": "踩坑指南"
-        }
-      ]
-    },
-    {
       "name": "业务组件",
       "groups": [
         {
-          "groupName": "业务组件",
+          "groupName": "业务组件（need more components! (#^.^#)）",
           "list": [
             {
               "path": "/select-date-picker",
@@ -75,6 +63,20 @@
             {
               "path": "/pdf-export",
               "title": "PdfExport 导出为PDF"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "组件常用方法示例",
+      "groups": [
+        {
+          "groupName": "组件常用方法示例",
+          "list": [
+            {
+              "path": "/demo/demo-dialog",
+              "title": "Dialog 对话框 常用示例"
             }
           ]
         }

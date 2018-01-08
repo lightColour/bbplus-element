@@ -3,7 +3,7 @@
 #### 首先你需要 Node.js 4+ 和 NPM 3+
 
 ```shell
-git clone http://git.babybus.com/liuzhaozhi/bbplus-element.git
+git clone http://git.babybus.com/liuzhaozhi/bb-element.git
 npm run dev
 
 # open http://localhost:8085

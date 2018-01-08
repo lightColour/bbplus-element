@@ -119,14 +119,14 @@ Files.forEach(file => {
 const navConfigFile = require('../../examples/nav.config.json');
 
 // Object.keys(navConfigFile).forEach(lang => {
-  let groups = navConfigFile['zh-CN'][5].groups;
-  groups[groups.length - 1].list.push({
-    path: `/${componentname}`,
-    title: `${ComponentName} ${chineseName}`
-    // title: lang === 'zh-CN' && componentname !== chineseName
-    //     ? `${ComponentName} ${chineseName}`
-    //     : ComponentName
-  });
+let groups = navConfigFile['zh-CN'][5].groups;
+groups[groups.length - 1].list.push({
+  path: `/${componentname}`,
+  title: `${ComponentName} ${chineseName}`
+  // title: lang === 'zh-CN' && componentname !== chineseName
+  //     ? `${ComponentName} ${chineseName}`
+  //     : ComponentName
+});
 // });
 
 fileSave(path.join(__dirname, '../../examples/nav.config.json'))

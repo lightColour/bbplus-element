@@ -17,8 +17,8 @@
 </template>
 
 <script type="text/babel">
-  import Emitter from 'bbplus-element/src/mixins/emitter';
-  import { getValueByPath } from 'bbplus-element/src/utils/util';
+  import Emitter from 'element-ui/lib/mixins/emitter';
+  import { getValueByPath } from 'element-ui/lib/utils/util';
 
   export default {
     mixins: [Emitter],

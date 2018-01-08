@@ -38,8 +38,8 @@ module.exports = require("element-ui/lib/mixins/emitter");
 ```
 这就导致我们的包名"bbplus-element"与路径"element-ui"不一致，无法加载到模块。
 怎么解决这个问题？<br>
-* 在`npm pushlish`之前，对项目lib下的"element-ui"批量替换成"bbplus-element"
-* 对整个项目中的"element-ui"替换成"bbplus-element",然后再`npm run dist`和`npm pushlish`
+* 在`npm publish`之前，对项目lib下的"element-ui"批量替换成"bbplus-element"
+* 对整个项目中的"element-ui"替换成"bbplus-element",然后再`npm run dist`和`npm publish`
 以上两种方法都很容易出错，第二种方法在和github源element同步时，更是会有冲突，因此，我转向了方案二。
 
 

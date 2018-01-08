@@ -7,6 +7,9 @@
         icons: iconList,
         element() {
         	return document.getElementsByClassName('icon-list')[0];
+        },
+        element2() {
+        	return document.getElementsByClassName('el-scrollbar__view')[0];
         }
       };
     },
@@ -15,22 +18,15 @@
       handleExport() {
         const el = this.$refs['pdf-export'];
         el.exportToPDF();
+      },
+      handleExport2() {
+        const el = this.$refs['pdf-export2'];
+        el.exportToPDF();
       }
     }
   }
 </script>
 <style>
-  .demo-pdf-export .source > i {
-    color: #606266;
-    margin: 0 20px;
-    font-size: 1.5em;
-    vertical-align: middle;
-  }
-  
-  .demo-pdf-export .source > button {
-    margin: 0 20px;
-  }
-
   .page-component .content > ul.icon-list {
     overflow: hidden;
     list-style: none;
@@ -85,21 +81,68 @@
 
 ## PdfExport 导出为PDF
 
-提供了一套常用的图标集合。
+将指定元素转为PDF输出    
+作者: 招智
 
-### 使用方法
+### 基础使用方法
 
-直接通过设置类名为 `el-icon-iconName` 来使用即可。例如：
+导出下面的图表合集
 
 :::demo
 ```html
-<i class="el-icon-edit"></i>
-<i class="el-icon-share"></i>
-<i class="el-icon-delete"></i>
 <bb-pdf-export ref="pdf-export" :element="element">
   <el-button type="primary" @click="handleExport">导出为PDF <i class="el-icon-document"></i></el-button>
 </bb-pdf-export>
 
+<script>
+	export default {
+		data() {
+      return {
+        element() {
+        	return document.getElementsByClassName('icon-list')[0];
+        }
+      };
+    },
+
+    methods: {
+      handleExport() {
+        const el = this.$refs['pdf-export'];
+        el.exportToPDF();
+      }
+    }
+	}
+</script>
+```
+:::
+
+### 导出有滚动条的元素
+
+带有滚动条的元素， 会执行`el.parentNode.scrollTop = 0`，不然滚动条上方区域截取不到。
+
+:::demo
+```html
+<bb-pdf-export ref="pdf-export2" :element="element2">
+  <el-button type="primary" @click="handleExport2">导出为PDF <i class="el-icon-document"></i></el-button>
+</bb-pdf-export>
+
+<script>
+	export default {
+		data() {
+      return {
+        element2() {
+        	return document.getElementsByClassName('el-scrollbar__view')[0];
+        }
+      };
+    },
+
+    methods: {
+      handleExport2() {
+        const el = this.$refs['pdf-export2'];
+        el.exportToPDF();
+      }
+    }
+	}
+</script>
 ```
 :::
 
@@ -113,3 +156,27 @@
     </span>
   </li>
 </ul>
+
+:::tip
+
+html2canvas.js 超出可视区域截图是空白的、分辨率优化、文字模糊问题, 采用下面的pr对源码进行修改
+
+https://github.com/niklasvh/html2canvas/commit/62b6973b5a4ba7376367bb090424066a374abe9e
+https://github.com/niklasvh/html2canvas/issues/541
+https://github.com/niklasvh/html2canvas/issues/576
+https://github.com/niklasvh/html2canvas/pull/1087
+
+修改的代码：源码搜索(change start、change end包裹的代码, 注释掉的为源代码, 没注释掉的是修改后的代码)
+:::
+
+### Attributes
+| 参数      | 说明          | 类型      | 可选值                           | 默认值  |
+|---------- |-------------- |---------- |--------------------------------  |-------- |
+| element | 返回选取的元素 | function | — | — |
+| name | 文件名 | string | — | Date.now() |
+| background | 背景色 | string | — | #fff |
+
+### Methods
+| 方法名 | 说明 | 参数 |
+|---------- |-------- |---------- |
+| exportToPDF | 导出为PDF方法 | — |
