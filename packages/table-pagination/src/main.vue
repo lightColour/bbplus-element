@@ -51,19 +51,13 @@ export default {
   data() {
     return {
       // 分页
+      limit: 15,
       currentPage: 1,
       // 排序处理
       sortMethod: data => data
     };
   },
   computed: {
-    limit: {
-      get() {
-        return (this.pageSizes.length > 0 && this.pageSizes[0]) || 15;
-      },
-      set() {
-      }
-    },
     offset() {
       return this.limit * (this.currentPage - 1);
     },
@@ -80,6 +74,9 @@ export default {
       // 切换数据来源，分页重置
       this.currentPage = 1;
     }
+  },
+  created() {
+    this.limit = (this.pageSizes.length > 0 && this.pageSizes[0]) || 15;
   },
   methods: {
     // 分页

@@ -1,116 +1,116 @@
-.el-select-dropdown {
+.bb-select-picker-dropdown {
   padding: 4px 0;
-}
 
-.el-select-dropdown__input {
-  padding: 4px;
-}
-.el-scrollbar-wrap__wrap {
-  float: left;
-}
-.el-scrollbar-wrap__side {
-  min-height: 306px;
-  margin-top: -40px;
-  border-left: 1px solid #ccc;
-
-  .el-select-dropdown__wrap {
-    min-height: 326px;
+  .el-select-dropdown__input {
+    padding: 4px;
   }
-}
-.el-scrollbar {
-  padding-left: 4px;
-}
-.el-select-dropdown__selects {
-  padding-left: 0px;
-  margin-top: 0;
-  margin-bottom: 0;
+  .el-scrollbar-wrap__wrap {
+    float: left;
+  }
+  .el-scrollbar-wrap__side {
+    min-height: 306px;
+    margin-top: -40px;
+    border-left: 1px solid #ccc;
 
-  li {
-    position: relative;
-    font-size: 13px;
-    color: #2F4B66;
+    .el-select-dropdown__wrap {
+      min-height: 326px;
+    }
+  }
+  .el-scrollbar {
+    padding-left: 4px;
+  }
+  .el-select-dropdown__selects {
+    padding-left: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
 
-    .el-tag {
-      width: 100%;
-      margin: 0;
-      padding: 0 20px 0 0;
+    li {
+      position: relative;
+      font-size: 13px;
       color: #2F4B66;
-      box-sizing: border-box;
-      border-color: transparent;
-      background-color: #fff;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
 
-      .el-tag__close {
-        position: absolute;
-        right: 10px;
-        top: 5px;
-        width: 13px;
-        height: 13px;
-        font-size: 12px;
-        transform: scale(.9);
-        background-color: #ccc;
-        color: #fff;
+      .el-tag {
+        width: 100%;
+        margin: 0;
+        padding: 0 20px 0 0;
+        color: #2F4B66;
+        box-sizing: border-box;
+        border-color: transparent;
+        background-color: #fff;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
 
-        &:before {
-          height: 12px;
+        .el-tag__close {
+          position: absolute;
+          right: 10px;
+          top: 5px;
+          width: 13px;
+          height: 13px;
+          font-size: 12px;
+          transform: scale(.9);
+          background-color: #ccc;
+          color: #fff;
+
+          &:before {
+            height: 12px;
+          }
         }
       }
     }
   }
-}
 
-.el-select-dropdown.is-multiple {
-  .el-select-dropdown__item {
-    &.selected {
-      color: #fff;
-      background-color: #409EFF;
-      &:hover, &.hover {
+  .el-select-dropdown.is-multiple {
+    .el-select-dropdown__item {
+      &.selected {
+        color: #fff;
         background-color: #409EFF;
-      }
-      &::after {
-        content: '';
+        &:hover, &.hover {
+          background-color: #409EFF;
+        }
+        &::after {
+          content: '';
+        }
       }
     }
   }
-}
-.el-select-dropdown__item {
-  display: inline-block;
-  height: 22px;
-  margin-right: 4px;
-  padding: 2px 6px;
-  min-height: 22px;
-  box-sizing: border-box;
-  font-size: 12px;
-  line-height: 18px!important;
-  border-radius: 3px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  .el-select-dropdown__item {
+    display: inline-block;
+    height: 22px;
+    margin-right: 4px;
+    padding: 2px 6px;
+    min-height: 22px;
+    box-sizing: border-box;
+    font-size: 12px;
+    line-height: 18px!important;
+    border-radius: 3px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
-  &:hover {
-    color: #fff;
-    background-color: #555;
-  }
+    &:hover {
+      color: #fff;
+      background-color: #555;
+    }
 
-  &.is-disabled {
+    &.is-disabled {
+      span {
+        color: #c0c4cc;
+      }
+    }
+
     span {
-      color: #c0c4cc;
+      line-height: 18px !important;
+      font-weight: normal;
     }
   }
-
-  span {
-    line-height: 18px !important;
-    font-weight: normal;
+  .el-select-group .el-select-dropdown__item {
+    padding-left: 6px;
   }
-}
-.el-select-group .el-select-dropdown__item {
-  padding-left: 6px;
-}
-.el-select-dropdown__footer {
-  margin-top: 2px;
-  padding: 5px 5px 0;
-  text-align: right;
-  border-top: 1px solid #ccc;
+  .el-select-dropdown__footer {
+    margin-top: 2px;
+    padding: 5px 5px 0;
+    text-align: right;
+    border-top: 1px solid #ccc;
+  }
 }

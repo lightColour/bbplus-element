@@ -1,6 +1,6 @@
 <template>
   <div
-    class="el-select-dropdown el-popper"
+    class="el-select-dropdown el-popper bb-select-picker-dropdown"
     :class="[{ 'is-multiple': $parent.multiple }, popperClass]"
     :style="{ width: minWidth }">
     <div

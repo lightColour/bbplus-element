@@ -1,6 +1,6 @@
 <template>
   <div
-    class="el-select"
+    class="el-select bb-select-picker"
     :class="[selectSize ? 'el-select--' + selectSize : '']"
     v-clickoutside="handleClose">
     <div
