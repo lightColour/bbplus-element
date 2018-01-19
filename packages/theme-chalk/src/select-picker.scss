@@ -60,7 +60,7 @@
     }
   }
 
-  .el-select-dropdown.is-multiple {
+  &.is-multiple {
     .el-select-dropdown__item {
       &.selected {
         color: #fff;
